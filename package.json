@@ -9,8 +9,8 @@
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node -r esm ./node_modules/.bin/micro src/server.js",
-    "dev": "node -r esm ./node_modules/.bin/micro-dev src/server.js"
+    "start": "node -r esm ./node_modules/.bin/micro server.js",
+    "dev": "node -r esm ./node_modules/.bin/micro-dev server.js"
   },
   "keywords": [],
   "author": "",

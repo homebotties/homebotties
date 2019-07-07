@@ -44,8 +44,8 @@ const resolvers = {
 
 const apolloServer = new ApolloServer({ typeDefs, resolvers });
 const graphqlHandler = apolloServer.createHandler();
+
 module.exports = router(
-  get('/', (req, res) => handler(req, res, { public: 'src/public' })),
+  get('/*', (req, res) => handler(req, res)),
   post('/graphql', graphqlHandler),
-  get('/graphql', graphqlHandler),
 );
