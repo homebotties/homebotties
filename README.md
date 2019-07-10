@@ -1,8 +1,13 @@
+### API
 
-    $ git clone git@github.com:sco/raymondhome.git
-    $ cd raymondhome
+    $ cd server
     $ npm install
     $ npm link
     $ lights alert Tripod
     $ npm run dev
     $ npm start
+
+### App
+
+    $ cd app
+    $ expo start --web
