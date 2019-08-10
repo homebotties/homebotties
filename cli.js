@@ -1,5 +1,5 @@
-import arg from 'arg';
-import {
+var arg = require('arg');
+var {
   refresh,
   alert,
   set,
@@ -9,9 +9,9 @@ import {
   state,
   status,
   tripod,
-} from './lights';
+} = require('./lights');
 
-export async function cli(rawArgs) {
+async function cli(rawArgs) {
   const args = arg({}, {permissive: false, argv: rawArgs.slice(2)});
   let options = {
     skip: args['--skip'] || false,
@@ -56,4 +56,4 @@ export async function cli(rawArgs) {
   }
 }
 
- 
+module.exports = cli;

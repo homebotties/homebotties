@@ -46,19 +46,7 @@ const resolvers = {
 const apolloServer = new ApolloServer({ typeDefs, resolvers });
 const graphqlHandler = cors(apolloServer.createHandler());
 
-// const handler = (req, res) => {
-//   if (req.method === 'OPTIONS') {
-//     return send(res, 200, 'ok!');
-//   }
-
-//   if (req.method !== 'POST') {
-//     throw createError(404, 'Not Found');
-//   }
-
-//   // handle incoming request as usual
-// }
-
 module.exports = cors(router(
-  get('/*', (req, res) => handler(req, res, { public: '../public' })),
+  get('/*', (req, res) => handler(req, res, { public: './public' })),
   post('/graphql', graphqlHandler),
 ));

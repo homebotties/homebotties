@@ -24,9 +24,9 @@ export const counter = 'Counter';
 
 export async function refresh() {
   let state = await hue.fullState();
-  console.log(JSON.stringify(state));
+  //console.log(JSON.stringify(state));
   let lights = await hue.lights();
-  console.log(JSON.stringify(lights['lights']));
+  //console.log(JSON.stringify(lights['lights']));
 }
 
 export async function status(name) {
