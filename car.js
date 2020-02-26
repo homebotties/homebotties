@@ -6,9 +6,9 @@ const device = new PCA9685(bus, {address: 0x60});
 
 const motors = [
   [8, 10, 9],
-  [7, 6, 5],
+  [13, 12, 11],
   [2, 4, 3],
-  [13, 11, 12]
+  [7, 5, 6]
 ];
 
 async function init() {
@@ -44,18 +44,18 @@ function all(value) {
   [0,1,2,3].forEach(idx => throttle(idx, value));
 }
 
-function left() {
+function left(v=1.0) {
   throttle(0, -0.5);
   throttle(1, 0.5);
   throttle(2, -0.5);
   throttle(3, 0.5);
 }
 
-function right() {
-  throttle(0, 0.5);
-  throttle(1, -0.5);
-  throttle(2, 0.5);
-  throttle(3, -0.5);
+function turn(v=1.0, s=1.0) {
+  throttle(0, v*s);
+  throttle(1, -v*s);
+  throttle(2, v*s);
+  throttle(3, -v*s);
 }
 
 (async () => {
@@ -63,7 +63,7 @@ function right() {
 
   switch(process.argv[2]) {
     case 'throttle':
-      throttle(3);
+      throttle(parseInt(process.argv[3])-1, parseFloat(process.argv[4]));
       break;
     case 'stop':
       all(0);
@@ -72,7 +72,7 @@ function right() {
       all(1);
       break;
     case 'back':
-      all(-1);
+      all(-0.5);
       break;
     case 'slow':
       all(0.5);
@@ -80,8 +80,8 @@ function right() {
     case 'left':
       left();
       break;
-    case 'right':
-      right();
+    case 'turn':
+      turn(parseFloat(process.argv[3]), parseFloat(process.argv[4]));
       break;
   }
 })()
