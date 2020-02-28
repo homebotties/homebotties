@@ -1,16 +1,18 @@
 const { router, get, post, options } = require('microrouter');
 const cors = require('micro-cors')();
-const handler = require('serve-handler');
+const serveHandler = require('serve-handler');
 const { ApolloServer, gql } = require('apollo-server-micro');
 import { lights, on, off, set, alert, state } from './lights';
 
-const typeDefs = gql`
+const schema = gql`
   type Light {
     id: String!
     name: String!
   }
   type Query {
+    hello: String!,
     lights: [Light!]!
+    camera: String,
   }
   type Mutation {
     on(name: String!): Boolean!
@@ -22,8 +24,14 @@ const typeDefs = gql`
 
 const resolvers = {
   Query: {
+    hello(parent, args, context) {
+	    return 'world';
+    },
     lights(parent, args, context) {
       return lights;
+    },
+    camera(parent, args, context) {
+      return 'http://scobot:8080/stream/video.mjpeg'
     },
   },
   Mutation: {
@@ -43,10 +51,11 @@ const resolvers = {
   },
 };
 
-const apolloServer = new ApolloServer({ typeDefs, resolvers });
-const graphqlHandler = cors(apolloServer.createHandler());
+const graphqlServer = new ApolloServer({ typeDefs: schema, resolvers });
+const graphqlHandler = cors(graphqlServer.createHandler());
 
 module.exports = cors(router(
-  get('/*', (req, res) => handler(req, res, { public: './public' })),
+  get('/*', (req, res) => serveHandler(req, res, { public: './public' })),
   post('/graphql', graphqlHandler),
+  // TODO camera stream
 ));
