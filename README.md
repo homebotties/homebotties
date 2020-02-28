@@ -9,6 +9,11 @@
 
 ### TODO (System)
 
+- Review past commits for errors
+- PDI deno
+- by default, expose merest endpoint (graphql service, exposing raw 'bot state' read/write capability)
+- allow defining additional 'routes' (after the default '/graphql' POST handler), such as a homepage
+  - defined as a TS function, set via graphql, as the 'state' of the 'bot'.
 - Mobile UI (tailwind ui?)
 - lock down security better (no camera ui)
 - Document configuring lights, camera, motors, lights, mic, rf
