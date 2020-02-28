@@ -1,37 +1,60 @@
-### API
+![Logo](https://homebotties.com/logo.svg)
 
+# Homebotties
+
+[Homebotties](https://homebotties.com) is a simple set of tools patterns for building household robots. Really quite early.
+
+## Getting started 
+
+Prerequisites:
+- Node 10
+
+Clone from Github and install dependencies:
+
+    $ git clone git@github.com:homebotties/homebotties.git
+    $ cd homebotties
     $ npm install
+
+Start development server:
+    
     $ npm run dev
+
+Start production server:
+
     $ npm start
 
-    $ npm link
-    $ lights alert Tripod
 
 ### TODO (System)
 
+- Migrate to GH issues
 - Review past commits for errors
-- PDI deno
-- by default, expose merest endpoint (graphql service, exposing raw 'bot state' read/write capability)
-- allow defining additional 'routes' (after the default '/graphql' POST handler), such as a homepage
-  - defined as a TS function, set via graphql, as the 'state' of the 'bot'.
-- Mobile UI (tailwind ui?)
+ default to exposing merest endpoint (graphql service for raw 'bot state' read/write capability)
+- special state 'routes' maps paths/methods to lambdas
+  - such as a homepage
 - lock down security better (no camera ui)
 - Document configuring lights, camera, motors, lights, mic, rf
-- start service in bg 
+- start service in bg (PM2?)
 - Communicate w/ arduinos etc
-- Version control system dependencies (rasbpian version, system packages, settings)
+- document/sourcecontrol system dependencies (rasbpian version, system packages, settings)
 
-## LifeLog app todo
+## Maybe/someday
+- PDI deno
+- Use xstate or redux for core state manegement model?
+
+## Recorder module
 - record state
 - access recordings
 - flicker like a candle when on
 - transmit ultrasonic FYIs
 - not be sold in 2-party states (!). But you can print your own if you want. If it conforms to the spec, you can even label it Homebotty and sell it at the farmer's market
 
-## Car app
+## Car module
 - Drive states
 - joystick-style drive
+- Consider how to define 'car' as a module that provides a schema fragment, any resolvers needed, and UI component that uses it. 
 
+## Lights module 
+- Fix hue hub integration
 
 ### HOWTO
 
