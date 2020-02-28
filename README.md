@@ -17,14 +17,16 @@
 - Version control system dependencies (rasbpian version, system packages, settings)
 
 ## LifeLog app todo
-- Lifelog bot should flicker like a candle when on
-- And transmit ultrasonic FYIs
-- And not be sold in 2-party states (!)
-- But you can print your own
-- If it conforms to the spec, you can even label it Homebotty and sell it at the farmer's market
+- record state
+- access recordings
+- flicker like a candle when on
+- transmit ultrasonic FYIs
+- not be sold in 2-party states (!). But you can print your own if you want. If it conforms to the spec, you can even label it Homebotty and sell it at the farmer's market
 
 ## Car app
 - Drive states
+- joystick-style drive
+
 
 ### HOWTO
 
