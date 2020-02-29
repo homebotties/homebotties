@@ -24,29 +24,11 @@ Start production server:
     $ npm start
 
 
-### TODO (System)
-
-- Migrate to GH issues
-- Review past commits for errors
- default to exposing merest endpoint (graphql service for raw 'bot state' read/write capability)
-- special state 'routes' maps paths/methods to lambdas
-  - such as a homepage
-- lock down security better (no camera ui)
-- Document configuring lights, camera, motors, lights, mic, rf
-- start service in bg (PM2?)
-- Communicate w/ arduinos etc
-- document/sourcecontrol system dependencies (rasbpian version, system packages, settings)
-
-## Maybe/someday
-- PDI deno
-- Use xstate or redux for core state manegement model?
-
 ## Recorder module
 - record state
 - access recordings
 - flicker like a candle when on
 - transmit ultrasonic FYIs
-- not be sold in 2-party states (!). But you can print your own if you want. If it conforms to the spec, you can even label it Homebotty and sell it at the farmer's market
 
 ## Car module
 - Drive states
