@@ -54,22 +54,22 @@ function right(value=1.0) {
   [1,3].forEach(motor => throttle(motor, -value));
 }
 
-export function setDriveMode(driveMode) {
+export function setDriveMode(driveMode, v=0.5) {
 	switch(driveMode) {
 		case 'STOP':
 			all(0);
 			break;
-		case 'SLOW':
-			all(0.5);
+		case 'GO':
+			all(v);
 			break;
 		case 'BACK':
-			all(-0.5);
+			all(-v);
 			break;
 		case 'LEFT':
-		        left(1.0);
+		        left(v);
 			break;
 		case 'RIGHT':
-			right(1.0);
+			right(v);
 			break;
 		default:
 			break;

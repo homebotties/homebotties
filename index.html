@@ -17,7 +17,6 @@
     <body>
       <div id="root"></div>
       <script type="module">
-
 import { React, ReactDOM } from 'https://unpkg.com/es-react';
 import htm from 'https://unpkg.com/htm?module'
 const html = htm.bind(React.createElement);
@@ -63,13 +62,14 @@ function Light({ name }) {
 }
 
 function Car() {
-  const handler = (driveMode) => { graphql(`mutation { setDriveMode(driveMode:${driveMode}) }`)};
+  const handler = (driveMode) => { graphql(`mutation { setDriveMode(driveMode:${driveMode}, v: 0.1) { value } }`)};
   return html`
     <div>
-      <button onClick=${() => handler('SLOW')}>Slow</button>
+      <button onClick=${() => handler('GO')}>Slow</button>
       <button onClick=${() => handler('STOP')}>Stop</button>
       <button onClick=${() => handler('BACK')}>Back</button>
       <button onClick=${() => handler('LEFT')}>Left</button>
+      <button onClick=${() => handler('RIGHT')}>Right</button>
     </div>jj
   `
 }

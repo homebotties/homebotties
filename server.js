@@ -13,9 +13,12 @@ const schema = gql`
     id: String!
     name: String!
   }
+  type State {
+    value: String!
+  }
   enum DriveMode {
     STOP
-    SLOW
+    GO
     BACK
     LEFT
     RIGHT
@@ -26,11 +29,8 @@ const schema = gql`
     camera: String,
   }
   type Mutation {
-    on(name: String!): Boolean!
-    off(name: String!): Boolean!
-    set(name: String!, bri: Int): Boolean!
-    alert(name: String!): Boolean!
-    setDriveMode(driveMode: DriveMode!): DriveMode!
+    setLight(name: String!, on: Boolean, bri: Int): Boolean!
+    setDriveMode(driveMode: DriveMode!, v: Float): State
   }
 `;
 
@@ -47,22 +47,13 @@ const resolvers = {
     },
   },
   Mutation: {
-    async on(parent, { name }, context) {
-      return await on(name);
-    },
-    async off(parent, { name }, context) {
-      return await off(name);
-    },
-    async set(parent, { name, bri }, context) {
-      set(name, state().bri(bri));
+    async setLight(parent, { name, on, bri }, context) {
+      set(name, state().bri(bri));// TODO on-ness
       return true;
     },
-    async alert(parent, { name }, context) {
-      return await alert(name);
-    },
-    async setDriveMode(parent, { driveMode }, context) {
-      await setDriveMode(driveMode);
-      return driveMode;
+    async setDriveMode(parent, { driveMode, v }, context) {
+      await setDriveMode(driveMode, v);
+      return { value: driveMode };
     },
   },
 };
