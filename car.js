@@ -40,22 +40,40 @@ function throttle(motorIndex, value) {
   }
 }
 
-function all(value) {
+function all(value=0.5) {
   [0,1,2,3].forEach(idx => throttle(idx, value));
 }
 
-function left(v=1.0) {
-  throttle(0, -0.5);
-  throttle(1, 0.5);
-  throttle(2, -0.5);
-  throttle(3, 0.5);
+function left(value=1.0) {
+  [0,2].forEach(motor => throttle(motor, -value));
+  [1,3].forEach(motor => throttle(motor, value));
 }
 
-function turn(v=1.0, s=1.0) {
-  throttle(0, v*s);
-  throttle(1, -v*s);
-  throttle(2, v*s);
-  throttle(3, -v*s);
+function right(value=1.0) {
+  [0,2].forEach(motor => throttle(motor, value));
+  [1,3].forEach(motor => throttle(motor, -value));
+}
+
+export function setDriveMode(driveMode) {
+	switch(driveMode) {
+		case 'STOP':
+			all(0);
+			break;
+		case 'SLOW':
+			all(0.5);
+			break;
+		case 'BACK':
+			all(-0.5);
+			break;
+		case 'LEFT':
+		        left(1.0);
+			break;
+		case 'RIGHT':
+			right(1.0);
+			break;
+		default:
+			break;
+	}
 }
 
 (async () => {

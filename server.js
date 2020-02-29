@@ -1,13 +1,24 @@
+//const res = require('micro/res')
+const fs = require('fs');
+const {send} = require('micro')
 const { router, get, post, options } = require('microrouter');
 const cors = require('micro-cors')();
 const serveHandler = require('serve-handler');
 const { ApolloServer, gql } = require('apollo-server-micro');
 import { lights, on, off, set, alert, state } from './lights';
+import { setDriveMode } from './car';
 
 const schema = gql`
   type Light {
     id: String!
     name: String!
+  }
+  enum DriveMode {
+    STOP
+    SLOW
+    BACK
+    LEFT
+    RIGHT
   }
   type Query {
     hello: String!,
@@ -19,6 +30,7 @@ const schema = gql`
     off(name: String!): Boolean!
     set(name: String!, bri: Int): Boolean!
     alert(name: String!): Boolean!
+    setDriveMode(driveMode: DriveMode!): DriveMode!
   }
 `;
 
@@ -48,6 +60,10 @@ const resolvers = {
     async alert(parent, { name }, context) {
       return await alert(name);
     },
+    async setDriveMode(parent, { driveMode }, context) {
+      await setDriveMode(driveMode);
+      return driveMode;
+    },
   },
 };
 
@@ -55,7 +71,8 @@ const graphqlServer = new ApolloServer({ typeDefs: schema, resolvers });
 const graphqlHandler = cors(graphqlServer.createHandler());
 
 module.exports = cors(router(
-  get('/*', (req, res) => serveHandler(req, res, { public: './public' })),
   post('/graphql', graphqlHandler),
-  // TODO camera stream
+  get('/', (req, res) => serveHandler(req, res, { public: '.' })),
+  //get('/graphiql', (req, res) => serveHandler(req, res, { public: './graphiql.html' })),
+ // TODO camera stream
 ));

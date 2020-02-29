@@ -2,11 +2,11 @@
   "name": "@sco/raymondhome-api",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node -r esm ./node_modules/.bin/micro index.js -p 80",
-    "dev": "node -r esm ./node_modules/.bin/micro-dev index.js"
+    "start": "node -r esm ./node_modules/.bin/micro server.js -p 80",
+    "dev": "node -r esm ./node_modules/.bin/micro-dev server.js"
   },
   "keywords": [],
   "author": "",
