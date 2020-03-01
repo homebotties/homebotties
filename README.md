@@ -2,7 +2,9 @@
 
 # Homebotties
 
-With [Homebotties](https://homebotties.com), you can build <i>homebots</i>, simple household robots. 
+**Build your own <i>homebots</i>, simple household robots.**
+
+[Website](https://homebotties.com/), [Twitter](https://twitter.com/homebotties), [Instagram](https://instagram.com/homebotties/), [Facebook](https://facebook.com/homebotties), [YouTube](https://www.youtube.com/channel/UCmTGsdhKbpU611IhIpgNQ_w)
 
 ## Getting started 
 
@@ -15,13 +17,16 @@ With [Homebotties](https://homebotties.com), you can build <i>homebots</i>, simp
 
 1. Clone repo and install dependencies
 
+```
     $ git clone git@github.com:homebotties/homebotties.git homebot
     $ cd homebot
     $ npm install
+```
 
 2. Start bot server
-    
+```
     $ npm run dev
+```
 
     Run your bot app by opening `https://homebot:3000/` on your phone
 

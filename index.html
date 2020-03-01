@@ -17,6 +17,7 @@
     <body>
       <div id="root"></div>
       <script type="module">
+
 import { React, ReactDOM } from 'https://unpkg.com/es-react';
 import htm from 'https://unpkg.com/htm?module'
 const html = htm.bind(React.createElement);
@@ -34,11 +35,8 @@ function App() {
   const [lights, setLights] = React.useState([]);
   const [camera, setCamera] = React.useState('');
   React.useEffect(() => {
-    //api(`{ lights { name id }, camera}`).then(res => {
-    //  setLights(res.data.lights);
-    //  setCamera(res.data.camera);
-    //});
-    api(`{ camera }`).then(res => {
+    api(`{ lights { name id }, camera}`).then(res => {
+      setLights(res.data.lights);
       setCamera(res.data.camera);
     });
   }, []);
