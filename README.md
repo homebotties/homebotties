@@ -4,7 +4,8 @@
 
 **Build your own <i>homebots</i>, simple household robots.**
 
-[Website](https://homebotties.com/), [Twitter](https://twitter.com/homebotties), [Instagram](https://instagram.com/homebotties/), [Facebook](https://facebook.com/homebotties), [YouTube](https://www.youtube.com/channel/UCmTGsdhKbpU611IhIpgNQ_w)
+## Motivation
+TODO: A short description of the motivation behind the creation and maintenance of the project. This should explain **why** the project exists.
 
 ## Getting started 
 
@@ -12,8 +13,8 @@
 
   - Any computer (even a chromebook is fine!), and a phone (to run your bot app)
   - Raspberry Pi 
-    - Configure the network, change hostname
-    - Be able SSH into it!
+    - Configure the network/hostname
+    - Enable SSH
 
 1. Clone repo and install dependencies
 
@@ -22,6 +23,7 @@
     $ cd homebot
     $ npm install
 ```
+  TODO: 
 
 2. Start bot server
 ```
@@ -35,10 +37,14 @@
   - TODO: Tutorials, Examples, Community, Issues, Documentation, etc
 
 
-### HOWTO
+## Next Steps
+- Roadmap
+- Reporting issues
+- TODO: contributing.md
+- TODO: credits.md
 
-- Install on stock hardware (bare pi zero with no monitor), configure network, create accounts, run service
-- Change hostname:
-  - Change /etc/hostname
-  - Change /etc/hosts
+## License
+[MIT](https://tldrlegal.com/license/mit-license)
+
+Copyright [Scott Raymond](https://scottraymond.com/), scottraymond+homebotties@gmail.com
 
