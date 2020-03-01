@@ -4,7 +4,7 @@
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>scobot</title>
+        <title>Homebot</title>
         <style>
         html, body {
             height: 100%;
@@ -21,8 +21,8 @@ import { React, ReactDOM } from 'https://unpkg.com/es-react';
 import htm from 'https://unpkg.com/htm?module'
 const html = htm.bind(React.createElement);
 
-async function graphql(query) {
-  let res = await fetch('/graphql', {
+async function api(query) {
+  let res = await fetch('/api', {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({ query }),
@@ -34,8 +34,11 @@ function App() {
   const [lights, setLights] = React.useState([]);
   const [camera, setCamera] = React.useState('');
   React.useEffect(() => {
-    graphql(`{ lights { name id }, camera}`).then(res => {
-      setLights(res.data.lights);
+    //api(`{ lights { name id }, camera}`).then(res => {
+    //  setLights(res.data.lights);
+    //  setCamera(res.data.camera);
+    //});
+    api(`{ camera }`).then(res => {
       setCamera(res.data.camera);
     });
   }, []);
@@ -51,8 +54,8 @@ function App() {
 }
 
 function Light({ name }) {
-  const handler = () => { graphql(`mutation { on(name:"${name}") }`)};
-  const handleChange = (e) => { graphql(`mutation { set(name:"${name}", bri:${event.target.value}) }`)};
+  const handler = () => { api(`mutation { on(name:"${name}") }`)};
+  const handleChange = (e) => { api(`mutation { set(name:"${name}", bri:${event.target.value}) }`)};
   return html`
     <div>
       <button onClick=${handler}>${name}</button>
@@ -62,7 +65,7 @@ function Light({ name }) {
 }
 
 function Car() {
-  const handler = (driveMode) => { graphql(`mutation { setDriveMode(driveMode:${driveMode}, v: 0.1) { value } }`)};
+  const handler = (driveMode) => { api(`mutation { setDriveMode(driveMode:${driveMode}, v: 0.1) { value } }`)};
   return html`
     <div>
       <button onClick=${() => handler('GO')}>Slow</button>
@@ -70,7 +73,7 @@ function Car() {
       <button onClick=${() => handler('BACK')}>Back</button>
       <button onClick=${() => handler('LEFT')}>Left</button>
       <button onClick=${() => handler('RIGHT')}>Right</button>
-    </div>jj
+    </div>
   `
 }
 

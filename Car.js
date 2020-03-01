@@ -11,7 +11,7 @@ const motors = [
   [7, 5, 6]
 ];
 
-async function init() {
+export async function init() {
   await bus.open();
   await device.init();
   await device.set_frequency(50);
@@ -100,6 +100,8 @@ export function setDriveMode(driveMode, v=0.5) {
       break;
     case 'turn':
       turn(parseFloat(process.argv[3]), parseFloat(process.argv[4]));
+      break;
+    default:
       break;
   }
 })()
