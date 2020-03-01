@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node -r esm ./node_modules/.bin/micro index.js -p 80",
+    "start": "PORT=80 node -r esm server.js",
     "dev": "node -r esm server.js"
   },
   "keywords": [],

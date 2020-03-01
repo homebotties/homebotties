@@ -13,7 +13,8 @@
   - Any computer (even a chromebook is fine!), and a phone (to run your bot app)
   - Raspberry Pi 
     - Configure the network, change hostname
-    - Be able SSH into it!
+    - Power on, connect
+      - Be able SSH into it!
 
 1. Clone repo and install dependencies
 

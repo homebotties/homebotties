@@ -1,15 +1,17 @@
 const express = require('express')
 const path = require('path');
-import { apiServer } from './API';
+import { apiServer } from './api';
 
-const app = express()
-const port = 3000
+const app = express();
+const port = process.env.PORT || 3000;
 
 apiServer.applyMiddleware({ app, path: '/api' });
 
-app.get('/', function(req, res) {
-  res.sendFile(path.join(__dirname + '/index.html'));
-});
+function sendFile(filename) {
+  return (req, res) => res.sendFile(path.join(__dirname + `/${filename}`));
+}
+
+app.get('/', sendFile('index.html'));
 
 //app.get('/', (req, res) => res.send('Hello World!'))
 

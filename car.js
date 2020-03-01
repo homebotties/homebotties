@@ -41,6 +41,7 @@ function throttle(motorIndex, value) {
 }
 
 function all(value=0.5) {
+  console.log(`car all ${value}`);
   [0,1,2,3].forEach(idx => throttle(idx, value));
 }
 
@@ -59,7 +60,7 @@ export function setDriveMode(driveMode, v=0.5) {
 		case 'STOP':
 			all(0);
 			break;
-		case 'GO':
+		case 'FORWARD':
 			all(v);
 			break;
 		case 'BACK':
@@ -74,6 +75,19 @@ export function setDriveMode(driveMode, v=0.5) {
 		default:
 			break;
 	}
+}
+
+export function Car() {
+  const handler = (driveMode) => { api(`mutation { setDriveMode(driveMode:${driveMode}, v: 0.2) { value } }`)};
+  return html`
+    <div>
+      <button onClick=${() => handler('FORWARD')}>Slow</button>
+      <button onClick=${() => handler('STOP')}>Stop</button>
+      <button onClick=${() => handler('BACK')}>Back</button>
+      <button onClick=${() => handler('LEFT')}>Left</button>
+      <button onClick=${() => handler('RIGHT')}>Right</button>
+    </div>
+  `
 }
 
 (async () => {

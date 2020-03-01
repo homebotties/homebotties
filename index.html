@@ -19,8 +19,22 @@
       <script type="module">
 
 import { React, ReactDOM } from 'https://unpkg.com/es-react';
-import htm from 'https://unpkg.com/htm?module'
+import htm from 'https://unpkg.com/htm?module';
+//import { request } from 'https://unpkg.com/graphql-request';
+//import useSWR from 'https://unpkg.com/swr?module';
+
 const html = htm.bind(React.createElement);
+
+function Bot () {
+ const [bot, setBot] = React.useState({});
+  React.useEffect(() => {
+    api(`{ bot { name state }}`).then(res => {
+      setBot(res.data.bot);
+    });
+  }, []);
+  
+ return html`<div>Bot: ${bot.name}</div>`;
+}
 
 async function api(query) {
   let res = await fetch('/api', {
@@ -42,6 +56,7 @@ function App() {
   }, []);
   return html`
     <div>
+      <${Bot} />
       <img src="${camera}" alt="image" width="600" />
       <${Car} />
       ${lights.map(light => html`
@@ -63,10 +78,10 @@ function Light({ name }) {
 }
 
 function Car() {
-  const handler = (driveMode) => { api(`mutation { setDriveMode(driveMode:${driveMode}, v: 0.1) { value } }`)};
+  const handler = (driveMode) => { api(`mutation { setDriveMode(driveMode:${driveMode}, v: 0.2) { value } }`)};
   return html`
     <div>
-      <button onClick=${() => handler('GO')}>Slow</button>
+      <button onClick=${() => handler('FORWARD')}>Slow</button>
       <button onClick=${() => handler('STOP')}>Stop</button>
       <button onClick=${() => handler('BACK')}>Back</button>
       <button onClick=${() => handler('LEFT')}>Left</button>
