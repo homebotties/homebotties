@@ -1,14 +1,19 @@
 const { ApolloServer, gql } = require('apollo-server-express');
-import { lights, on, off, set, state } from './HueBridge';
-import { init, setDriveMode } from './Car';
+import { lights, on, off, set, state } from './hue';
+import { init, setDriveMode } from './car';
+import { status, logs, createLog } from './bot';
 
 export const typeDefs = gql`
   type Light {
     id: String!
     name: String!
   }
-  type State {
-    value: String!
+  type Log {
+    text: String
+  }
+  type Bot {
+    status: String!
+    logs: [Log!]!
   }
   enum DriveMode {
     STOP
@@ -21,10 +26,12 @@ export const typeDefs = gql`
     greeting(name: String): String!
     lights: [Light!]!
     camera: String,
+    bot: Bot!
   }
   type Mutation {
     setLight(name: String!, on: Boolean, bri: Int): Boolean!
-    setDriveMode(driveMode: DriveMode!, v: Float): State
+    setDriveMode(driveMode: DriveMode!, v: Float): DriveMode
+    createLog(text: String): Log
   }
 `;
 
@@ -39,6 +46,9 @@ export const resolvers = {
     camera(parent, args, context) {
       return 'http://scobot:8080/stream/video.mjpeg'
     },
+    bot(parent, args, context) {
+      return bot;
+    },
   },
   Mutation: {
     async setLight(parent, { name, on, bri }, context) {
@@ -49,6 +59,9 @@ export const resolvers = {
       await setDriveMode(driveMode, v);
       return { value: driveMode };
     },
+    async createLog(parent, args, context) {
+      return bot.createLog(args)
+    }
   },
 };
 

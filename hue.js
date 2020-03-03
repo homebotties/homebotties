@@ -10,7 +10,9 @@ export const hue = new HueApi(host, username);
 //let api = new HueApi(host);
 //let username = await api.registerUser(host); // tap the button first
 
-export const lights = require('./.homebotties/lights.json')
+export const lights = [];
+
+// export const lights = require('./.homebotties/lights.json')
 
 export const lightIds = lights.reduce((result, { name, id }) => {
   result[name] = id;

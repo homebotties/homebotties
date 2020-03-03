@@ -42,6 +42,7 @@ function App() {
   }, []);
   return html`
     <div>
+      <p>This is your bot app.</p>
       <img src="${camera}" alt="image" width="600" />
       <${Car} />
       ${lights.map(light => html`

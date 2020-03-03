@@ -4,8 +4,7 @@
 
 **Build your own <i>homebots</i>, simple household robots.**
 
-## Motivation
-TODO: A short description of the motivation behind the creation and maintenance of the project. This should explain **why** the project exists.
+
 
 ## Getting started 
 
@@ -47,4 +46,3 @@ TODO: A short description of the motivation behind the creation and maintenance 
 [MIT](https://tldrlegal.com/license/mit-license)
 
 Copyright [Scott Raymond](https://scottraymond.com/), scottraymond+homebotties@gmail.com
-
