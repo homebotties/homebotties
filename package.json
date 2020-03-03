@@ -2,11 +2,11 @@
   "name": "@homebotties/homebotties",
   "version": "0.0.1",
   "description": "Sitting at home, building bots",
-  "main": "index.js",
+  "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node -r esm ./node_modules/.bin/micro index.js -p 80",
-    "dev": "node -r esm index.js"
+    "start": "PORT=80 node -r esm server.js",
+    "dev": "node -r esm server.js"
   },
   "keywords": [],
   "author": "Scott Raymond <scottraymond+homebotties@gmail.com>",
