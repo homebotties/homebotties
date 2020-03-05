@@ -11,7 +11,7 @@ function sendFile(filename) {
   return (req, res) => res.sendFile(path.join(__dirname + `/${filename}`));
 }
 
-app.get('/', sendFile('index.html'));
+app.get('/', sendFile('app.html')); // TODO: get app module from API?
 
 app.listen(port, () => console.log(`Bot app running on port ${port}`))
 
