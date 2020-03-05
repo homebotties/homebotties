@@ -2,7 +2,7 @@
   "name": "@homebotties/homebotties",
   "version": "0.0.1",
   "description": "Sitting at home, building bots",
-  "main": "index.js",
+  "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "PORT=80 node -r esm server.js",

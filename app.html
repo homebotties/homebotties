@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+      <title>Bot</title>
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <style>
+      html, body {
+          height: 100%;
+          margin: 0;
+          overflow: hidden;
+          width: 100%;
+      }
+      </style>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module">
+
+import { React, ReactDOM } from 'https://unpkg.com/es-react';
+import htm from 'https://unpkg.com/htm?module'
+const html = htm.bind(React.createElement);
+
+// TODO: useAPI hook
+
+async function api(query) {
+  let res = await fetch('/api', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ query }),
+  })
+  return await res.json()
+}
+
+function App() {
+  const [data, setData] = React.useState({});
+  React.useEffect(() => {
+    api(`{ bot { status }}`).then(res => {
+      setData(res.data);
+    });
+  }, []);
+  return html`
+    <div>
+      <p>This is your bot app.</p>
+      <p>Bot status: ${ data.bot ? data.bot.status : 'Loading...' }</p>
+    </div>
+  `
+}
+
+ReactDOM.render(html`<${App} />`, document.getElementById("root"));
+
+      </script>
+    </body>
+</html>
+

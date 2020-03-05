@@ -13,7 +13,5 @@ function sendFile(filename) {
 
 app.get('/', sendFile('index.html'));
 
-//app.get('/', (req, res) => res.send('Hello World!'))
-
 app.listen(port, () => console.log(`Bot app running on port ${port}`))
 
