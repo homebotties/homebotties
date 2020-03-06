@@ -29,6 +29,7 @@
 
 2. Start your bot server
 ```
+    $ sudo PORT=80 node -r esm ./server.js
     $ npm start 
 ```
 

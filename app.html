@@ -10,17 +10,54 @@
           overflow: hidden;
           width: 100%;
       }
+      #screens {
+        display: grid;
+        grid-template-columns: repeat(5, 1fr);
+        grid-template-rows: repeat(5, 1fr);
+        grid-column-gap: 0px;
+        grid-row-gap: 0px;
+      }
+      #screens > div {
+        grid-area: 1 / 1 / 6 / 6;
+      }
+      .dpad {
+	display: grid;
+	
+	grid-template-columns: 1fr 1fr 1fr;
+	grid-template-rows: 1fr 1fr 1fr;
+	position: absolute;
+	bottom: 1em;
+	right: 1em;
+      }
+      .top-center {
+	grid-area: 1 / 2 / 2 / 3;
+      }
+      .center-center {
+	grid-area: 2 / 2 / 3 / 3;
+      }
+      .bottom-center {
+	grid-area: 3 / 2 / 4 / 3;
+      }
+      .center-left {
+        grid-area: 2 / 1 / 3 / 2;
+      }
+      .center-right {
+	grid-area: 2 / 3 / 3 / 4;
+      }
+      .camera {
+	      position: absolute;
+	      width: 100%;
+	      height: 100%;
+	     }
       </style>
   </head>
   <body>
     <div id="root"></div>
     <script type="module">
 
-import { React, ReactDOM } from 'https://unpkg.com/es-react';
+import { React, ReactDOM, useEffect, useState } from 'https://unpkg.com/es-react';
 import htm from 'https://unpkg.com/htm?module'
 const html = htm.bind(React.createElement);
-
-// TODO: useAPI hook
 
 async function api(query) {
   let res = await fetch('/api', {
@@ -31,17 +68,41 @@ async function api(query) {
   return await res.json()
 }
 
-function App() {
-  const [data, setData] = React.useState({});
-  React.useEffect(() => {
-    api(`{ bot { status }}`).then(res => {
+function useAPI(query) {
+  const [data, setData] = useState(null);
+
+  useEffect(() => {
+    api(query).then(res => {
       setData(res.data);
     });
   }, []);
+
+  return data;
+}
+
+function App() {
+  const data = useAPI(`{ bot { status } camera }`);
   return html`
-    <div>
-      <p>This is your bot app.</p>
-      <p>Bot status: ${ data.bot ? data.bot.status : 'Loading...' }</p>
+    <div id="screens">
+      <p>Bot status: ${data ? data.bot.status : 'Loading...'}</p>
+      <${Car} />
+    </div>
+  `
+}
+
+function Car() {
+  const data = useAPI(`{ bot { status } camera }`);
+  const handler = (driveMode) => { api(`mutation { setDriveMode(driveMode:${driveMode}, v: 0.1) }`)};
+  return html`
+    <div style=${{display: 'grid'}}>
+      <img className="camera" src="${data ? data.camera : ''}" style=${{'grid-area': '1 / 1 / 1 / 1'}} />
+      <div className="dpad">
+	<button onClick=${() => handler('FORWARD')} className="top-center">Slow</button>
+        <button onClick=${() => handler('STOP')} className="center-center">Stop</button>
+        <button onClick=${() => handler('BACK')} className="bottom-center">Back</button>
+        <button onClick=${() => handler('LEFT')} className="center-left">Left</button>
+        <button onClick=${() => handler('RIGHT')} className="center-right">Right</button>
+      </div>
     </div>
   `
 }

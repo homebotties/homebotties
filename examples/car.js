@@ -78,7 +78,7 @@ export function setDriveMode(driveMode, v=0.5) {
 }
 
 export function Car() {
-  const handler = (driveMode) => { api(`mutation { setDriveMode(driveMode:${driveMode}, v: 0.2) { value } }`)};
+  const handler = (driveMode) => { api(`mutation { setDriveMode(driveMode:${driveMode}, v: 0.2) }`)};
   return html`
     <div>
       <button onClick=${() => handler('FORWARD')}>Slow</button>
