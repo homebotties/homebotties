@@ -1,7 +1,0 @@
-{
-    "name": "Raymond Home",
-    "displayName": "Raymond Home",
-    "expo": {
-      "platforms": ["web"]
-    }
-}
