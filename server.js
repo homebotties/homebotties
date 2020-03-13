@@ -6,12 +6,12 @@ function sendFile(filename) {
   return (req, res) => res.sendFile(path.join(__dirname + `/${filename}`));
 }
 
-const router = express();
+const server = express();
 
-api.applyMiddleware({ router, path: '/api' }); // TODO: how to express this as not middleware?
-router.get('/', sendFile('app.html')); // TODO: get app module from API?
-roter.get('/README', sendFile('README.md')); // TODO md render in app shell?
+api.applyMiddleware({ app: server, path: '/api' }); // TODO: how to express this as not middleware?
+server.get('/', sendFile('app.html')); // TODO: get app module from API?
+server.get('/README', sendFile('README.md')); // TODO md render in app shell?
 
 const port = process.env.PORT || 3000;
-app.listen(port, () => console.log(`Bot app running on port ${port}`))
+server.listen(port, () => console.log(`Bot app running on port ${port}`))
 
