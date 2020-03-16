@@ -5,7 +5,7 @@
   "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "PORT=80 node -r esm server.js",
+    "start": "sudo PORT=80 node -r esm server.js",
     "dev": "node -r esm server.js"
   },
   "keywords": [],
