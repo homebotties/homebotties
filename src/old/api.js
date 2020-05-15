@@ -1,6 +1,6 @@
 const { ApolloServer, gql } = require('apollo-server-express');
-import { lights, on, off, set, state } from './examples/hue';
-import { init, setDriveMode } from './examples/car';
+import { lights, on, off, set, state } from '../../../examples/hue';
+import { init, setDriveMode } from '../../../examples/car';
 
 export const typeDefs = gql`
   type Light {

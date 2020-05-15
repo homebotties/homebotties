@@ -1,6 +1,6 @@
 const express = require('express');
 const path = require('path');
-import { apiServer as api } from './api';
+import { apiServer as api } from '../src/http/post-api/api';
 
 function sendFile(filename) {
   return (req, res) => res.sendFile(path.join(__dirname + `/${filename}`));
