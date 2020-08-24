@@ -9,7 +9,7 @@ function sendFile(filename) {
 const server = express();
 
 api.applyMiddleware({ app: server, path: '/api' }); // TODO: how to express this as not middleware?
-server.get('/', sendFile('app.html')); // TODO: get app module from API?
+server.get('/', sendFile('examples/car/app.html')); // TODO: get app module from API?
 server.get('/README', sendFile('README.md')); // TODO md render in app shell?
 
 const port = process.env.PORT || 3000;
