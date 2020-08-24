@@ -1,24 +1,24 @@
 {
   "name": "@homebotties/homebotties",
   "version": "0.0.1",
+  "description": "Sitting at home, building bots",
+  "main": "server.js",
   "scripts": {
-    "start": "npx sandbox",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "oldstart": "sudo PORT=80 node -r esm server.js",
-    "olddev": "node -r esm server.js"
+    "start": "sudo PORT=80 node -r esm server.js",
+    "dev": "node -r esm server.js"
   },
   "keywords": [],
   "author": "Scott Raymond <scottraymond+homebotties@gmail.com>",
   "license": "MIT",
   "dependencies": {
-    "@architect/functions": "^3.9.3",
+    "apollo-server-express": "^2.10.1",
+    "esm": "^3.2.25",
+    "express": "^4.17.1",
     "graphql": "^14.6.0",
-    "graphql-tools": "^5.0.0",
     "i2c-bus": "^5.1.0",
     "node-hue-api": "^2.4.6",
     "pca9685-promise": "^1.1.1"
   },
-  "devDependencies": {
-    "@architect/architect": "^6.3.5"
-  }
+  "devDependencies": {}
 }
