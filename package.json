@@ -5,17 +5,20 @@
   "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "sudo PORT=80 node -r esm server.js",
-    "dev": "node -r esm server.js"
+    "start": "node server.js",
+    "dev": "node server.js"
   },
   "keywords": [],
   "author": "Scott Raymond <scottraymond+homebotties@gmail.com>",
   "license": "MIT",
   "dependencies": {
     "apollo-server-express": "^2.10.1",
-    "esm": "^3.2.25",
     "express": "^4.17.1",
     "graphql": "^14.6.0",
+    "pca9685-promise": "^1.1.1"
+  },
+  "nondepedencies": {
+    "esm": "^3.2.25",
     "i2c-bus": "^5.1.0",
     "node-hue-api": "^2.4.6",
     "pca9685-promise": "^1.1.1"

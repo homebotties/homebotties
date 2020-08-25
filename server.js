@@ -1,6 +1,7 @@
 const express = require('express');
 const path = require('path');
-import { apiServer as api } from './api';
+const { apiServer } = require('./api');
+
 
 function sendFile(filename) {
   return (req, res) => res.sendFile(path.join(__dirname + `/${filename}`));
@@ -8,7 +9,7 @@ function sendFile(filename) {
 
 const server = express();
 
-api.applyMiddleware({ app: server, path: '/api' }); // TODO: how to express this as not middleware?
+apiServer.applyMiddleware({ app: server, path: '/api' }); // TODO: how to express this as not middleware?
 server.get('/', sendFile('examples/car/app.html')); // TODO: get app module from API?
 server.get('/README', sendFile('README.md')); // TODO md render in app shell?
 

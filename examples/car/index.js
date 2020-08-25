@@ -11,7 +11,7 @@ const motors = [
   [7, 5, 6]
 ];
 
-export async function init() {
+async function init() {
   await bus.open();
   await device.init();
   await device.set_frequency(50);
@@ -55,7 +55,7 @@ function right(value=1.0) {
   [1,3].forEach(motor => throttle(motor, -value));
 }
 
-export function setDriveMode(driveMode, v=0.5) {
+function setDriveMode(driveMode, v=0.5) {
 	switch(driveMode) {
 		case 'STOP':
 			all(0);
@@ -77,7 +77,7 @@ export function setDriveMode(driveMode, v=0.5) {
 	}
 }
 
-export function Car() {
+function Car() {
   const handler = (driveMode) => { api(`mutation { setDriveMode(driveMode:${driveMode}, v: 1.0) }`)};
   return html`
     <div>
@@ -90,6 +90,11 @@ export function Car() {
   `
 }
 
+module.exports = {
+	Car,
+	setDriveMode
+}
+/*
 (async () => {
   await init();
 
@@ -120,3 +125,4 @@ export function Car() {
   }
 })()
 
+*/

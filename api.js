@@ -1,8 +1,8 @@
 const { ApolloServer, gql } = require('apollo-server-express');
-import { lights, on, off, set, state } from './examples/hue';
-import { init, setDriveMode } from './examples/car';
+//import { lights, on, off, set, state } from './examples/hue';
+const { init, setDriveMode } = require('./examples/car');
 
-export const typeDefs = gql`
+const typeDefs = gql`
   type Light {
     id: String!
     name: String!
@@ -30,13 +30,13 @@ export const typeDefs = gql`
   }
 `;
 
-export const resolvers = {
+const resolvers = {
   Query: {
     greeting(parent, args, context) {
       return `Hello, ${args.name || 'world'}!`;
     },
     lights(parent, args, context) {
-      return lights;
+      //return lights;
     },
     camera(parent, args, context) {
       return 'http://scobot:8080/stream/video.mjpeg'
@@ -47,7 +47,7 @@ export const resolvers = {
   },
   Mutation: {
     async setLight(parent, { name, on, bri }, context) {
-      set(name, state().bri(bri));// TODO on-ness
+      //set(name, state().bri(bri));// TODO on-ness
       return true;
     },
     async setDriveMode(parent, { driveMode, v }, context) {
@@ -57,6 +57,10 @@ export const resolvers = {
   },
 };
 
-export const apiServer = new ApolloServer({ typeDefs, resolvers });
+const apiServer = new ApolloServer({ typeDefs, resolvers });
 
-
+module.exports = {
+	typeDefs,
+	apiServer,
+	resolvers,
+}

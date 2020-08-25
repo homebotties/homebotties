@@ -15,12 +15,18 @@ For easy development, first fork the `homebotties/homebotties` repo to your own 
 ```
   TODO: 
 
-2. Start your bot server
+2. Start bot
 ```
-    $ sudo PORT=80 node -r esm ./server.js
+    $ docker build -t <your username>/homebot .
+    $ docker run -p 80:3000 -d --restart unless-stopped <your username>/homebot
+```
+or
+```
+    $ sudo PORT=80 node ./server.js
+
+```
     $ npm start 
 ```
-
     Run your bot app by opening `https://homebot/` on your phone (when on the same wifi network)
 
 3. Configure the server to start automatically
