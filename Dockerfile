@@ -10,5 +10,5 @@ COPY . .
 
 EXPOSE 3000
 
-CMD [ "node", "-r", "esm", "server.js" ]
+CMD [ "node", "server.js" ]
 
