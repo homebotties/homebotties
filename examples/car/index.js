@@ -94,7 +94,9 @@ module.exports = {
 	Car,
 	setDriveMode
 }
-/*
+
+if (!module.parent) {
+
 (async () => {
   await init();
 
@@ -106,6 +108,7 @@ module.exports = {
       all(0);
       break;
     case 'forward':
+    case 'go':
       all(1);
       break;
     case 'back':
@@ -124,5 +127,5 @@ module.exports = {
       break;
   }
 })()
+}
 
-*/
